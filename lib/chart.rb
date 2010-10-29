@@ -52,6 +52,7 @@ module Ironmine
     end
 
     def to_s
+      return single_data if(@content[:datasets].size==1)
       @xml = Builder::XmlMarkup.new
       @xml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
       @xml.graph(to_xml_options(@content[:options]||{})) do
@@ -69,7 +70,19 @@ module Ironmine
           end
         end
         @xml.target!
+    end
+
+    def single_data
+      @xml = Builder::XmlMarkup.new
+      @xml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+      @xml.graph(to_xml_options(@content[:options]||{})) do
+        (@content[:categories][:details]||[]).each_index do |index|
+          ops = @content[:categories][:details][index].merge(@content[:datasets][0][:details][index])
+          @xml.set(to_xml_options(ops))
+        end
       end
+      @xml.target!
+    end
 
     private
     def to_xml_options(hash={})
