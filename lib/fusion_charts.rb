@@ -32,16 +32,16 @@ module Ironmine
       object_attributes=object_attributes.merge(:id=>chart_id)
 
       param_attributes1={:name=>"allowscriptaccess",:value=>"always"}
-      param_tag1=content_tag("param","",param_attributes1)
+      param_tag1=content_tag("param","",param_attributes1,false)
 
       param_attributes2={:name=>"movie",:value=>chart_swf}
-      param_tag2=content_tag("param","",param_attributes2)
+      param_tag2=content_tag("param","",param_attributes2,false)
 
       param_attributes3={:name=>"FlashVars",:value=>str_flash_vars}
-      param_tag3=content_tag("param","",param_attributes3)
+      param_tag3=content_tag("param","",param_attributes3,false)
 
       param_attributes4={:name=>"quality",:value=>"high"}
-      param_tag4=content_tag("param","",param_attributes4)
+      param_tag4=content_tag("param","",param_attributes4,false)
 
       embed_attributes={:src=>chart_swf}
       embed_attributes=embed_attributes.merge(:FlashVars=>str_flash_vars)
