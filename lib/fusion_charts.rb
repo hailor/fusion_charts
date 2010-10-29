@@ -19,6 +19,7 @@ module Ironmine
       if debug_mode==true
         debug_mode_num="1"
       end
+      str_xml = str_xml.gsub(/"/, "'").gsub(/''/, "'")
       str_flash_vars="chartWidth="+chart_width+"&chartHeight="+chart_height+"&debugmode="+debug_mode_num+"&dataXML="+str_xml
       content = ""
 
